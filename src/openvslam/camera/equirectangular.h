@@ -6,7 +6,7 @@
 namespace openvslam {
 namespace camera {
 
-class equirectangular final : public base {
+class equirectangular final : public base {//等矩阵相机模型
 public:
     equirectangular(const std::string& name, const color_order_t& color_order,
                     const unsigned int cols, const unsigned int rows, const double fps);

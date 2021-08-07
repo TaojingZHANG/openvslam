@@ -89,8 +89,10 @@ find_package(Eigen3 3.3 REQUIRED)
 # yaml-cpp
 find_package(yaml-cpp REQUIRED)
 
+set(OpenCV_DIR /home/ztj/software/opencv451/lib/cmake/opencv4)
+
 # OpenCV
-find_package(OpenCV 3.3.1 QUIET
+find_package(OpenCV 4.5.1 QUIET
              COMPONENTS
              core imgcodecs videoio features2d calib3d highgui)
 if(NOT OpenCV_FOUND)
@@ -137,19 +139,28 @@ set(ARCHIVE_DESTINATION ${CMAKE_INSTALL_PREFIX}/lib)
 set(INCLUDES_DESTINATION ${CMAKE_INSTALL_PREFIX}/include)
 
 # ----- Build selection -----
-
-set(USE_PANGOLIN_VIEWER OFF CACHE BOOL "Enable Pangolin Viewer")
+#add_definitions(-DUSE_PANGOLIN_VIEWER)
+set(USE_PANGOLIN_VIEWER ON)
+#set(USE_PANGOLIN_VIEWER ON CACHE BOOL "Enable Pangolin Viewer")
 set(USE_SOCKET_PUBLISHER OFF CACHE BOOL "Enable Socket Publisher")
+
+set(Pangolin_DIR "/usr/local/lib/cmake/Pangolin")
 
 add_subdirectory(src)
 
-set(BUILD_EXAMPLES OFF CACHE BOOL "Build examples")
+#set(BUILD_EXAMPLES ON CACHE BOOL "Build examples")
+set(BUILD_EXAMPLES ON)
 if(BUILD_EXAMPLES)
+    message("build examples!!!!!!!!!!!!!!!!!!!")
     add_subdirectory(example)
 endif()
 
-set(BUILD_TESTS OFF CACHE BOOL "Build tests")
+#set(BUILD_TESTS ON CACHE BOOL "Build tests")
+set(BUILD_TESTS OFF)
 if(BUILD_TESTS)
     enable_testing()
     add_subdirectory(test)
 endif()
+
+
+add_executable(test_ztj src/test_ztj.cpp)

@@ -12,7 +12,7 @@
 namespace openvslam {
 namespace camera {
 
-class perspective final : public base {
+class perspective final : public base {//透视相机
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW
 
